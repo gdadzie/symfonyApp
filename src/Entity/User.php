@@ -4,10 +4,12 @@ namespace App\Entity;
 
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
+#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -26,6 +28,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     #[ORM\Column]
     private ?string $password = null;
+
+    #[ORM\OneToOne(mappedBy: 'user_id', cascade: ['persist', 'remove'])]
+    private ?ApiClients $apiClients = null;
 
     public function getId(): ?int
     {
@@ -95,5 +100,27 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function getApiClients(): ?ApiClients
+    {
+        return $this->apiClients;
+    }
+
+    public function setApiClients(?ApiClients $apiClients): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($apiClients === null && $this->apiClients !== null) {
+            $this->apiClients->setUserId(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($apiClients !== null && $apiClients->getUserId() !== $this) {
+            $apiClients->setUserId($this);
+        }
+
+        $this->apiClients = $apiClients;
+
+        return $this;
     }
 }
