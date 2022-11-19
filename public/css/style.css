@@ -1,0 +1,68 @@
+#carouselExampleCaptions{
+    width: 100%;
+    margin: auto;
+}
+
+.carrousel-item img{
+    width: 100%;
+    height: 400px;
+}
+
+img{
+    width: 50px;
+    height: 600px;
+}
+
+h2{
+    color:darkred;
+}
+
+body{
+
+}
+
+.img-medium-size{
+    width: 300px;
+    height: 300px;
+    border-radius: 150px;
+    margin-top:50px;
+
+}
+
+/*// X-Small devices (portrait phones, less than 576px)*/
+/*// No media query for `xs` since this is the default in Bootstrap*/
+
+/*// Small devices (landscape phones, 576px and up)*/
+@media (min-width: 576px) {
+    h1{
+        color: #0c4a6e;
+    }
+}
+
+/*// Medium devices (tablets, 768px and up)*/
+@media (min-width: 768px) {
+    h1{
+        color: forestgreen;
+    }
+}
+
+/*// Large devices (desktops, 992px and up)*/
+@media (min-width: 992px) {
+    h1{
+        color: rosybrown;
+    }
+}
+
+/*// X-Large devices (large desktops, 1200px and up)*/
+@media (min-width: 1200px) {
+    h1{
+        color: rebeccapurple;
+    }
+}
+
+/*// XX-Large devices (larger desktops, 1400px and up)*/
+@media (min-width: 1400px) {
+    h1{
+        color: darkgoldenrod;
+    }
+}
