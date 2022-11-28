@@ -2,26 +2,26 @@
 
 namespace App\Repository;
 
-use App\Entity\ApiClients;
+use App\Entity\Apiinstallperm;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<ApiClients>
+ * @extends ServiceEntityRepository<Apiinstallperm>
  *
- * @method ApiClients|null find($id, $lockMode = null, $lockVersion = null)
- * @method ApiClients|null findOneBy(array $criteria, array $orderBy = null)
- * @method ApiClients[]    findAll()
- * @method ApiClients[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Apiinstallperm|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Apiinstallperm|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Apiinstallperm[]    findAll()
+ * @method Apiinstallperm[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class ApiClientsRepository extends ServiceEntityRepository
+class ApiinstallpermRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, ApiClients::class);
+        parent::__construct($registry, Apiinstallperm::class);
     }
 
-    public function save(ApiClients $entity, bool $flush = false): void
+    public function save(Apiinstallperm $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -30,7 +30,7 @@ class ApiClientsRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(ApiClients $entity, bool $flush = false): void
+    public function remove(Apiinstallperm $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
@@ -40,7 +40,7 @@ class ApiClientsRepository extends ServiceEntityRepository
     }
 
 //    /**
-//     * @return ApiClients[] Returns an array of ApiClients objects
+//     * @return Apiinstallperm[] Returns an array of Apiinstallperm objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -54,7 +54,7 @@ class ApiClientsRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?ApiClients
+//    public function findOneBySomeField($value): ?Apiinstallperm
 //    {
 //        return $this->createQueryBuilder('a')
 //            ->andWhere('a.exampleField = :val')

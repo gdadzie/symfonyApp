@@ -21,25 +21,25 @@
             <div class="carousel-inner">
 
                 <div class="carousel-item active">
-                    <img src='{{ asset('media/team.jpeg')}}' class='d-block w-100' alt='...'>
+                    <img src='{{ asset('media/team2.jpeg')}}' class='d-block w-100' alt='...'>
                     <div class="carousel-caption d-none d-md-block">
                         <h2 class="text-white">La Franchise</h2>
-                        <p><span class="text-warning">ORANGE</span> <span class="text-info">BLEUE </span></p>
+                        <p class="text-center"><span class="text-warning">ORANGE</span> <span class="text-info">BLEUE </span></p>
                     </div>
                 </div>
 
                 <div class="carousel-item">
-                    <img src='{{ asset('media/2.jpeg')}}' class='d-block w-100'  alt='...'>
+                    <img src='{{ asset('media/001.jpeg')}}' class='d-block w-100'  alt='...'>
                     <div class="carousel-caption d-none d-md-block">
-                        <h2>Second slide label</h2>
-                        <p>Some representative placeholder content for the second slide.</p>
+                        <h2 class="text-white">La Franchise</h2>
+                        <p class="text-center"><span class="text-warning">ORANGE</span> <span class="text-info">BLEUE </span></p>
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img src='{{ asset('media/salle_1.jpeg')}}' class='d-block w-100' alt='...'>
+                    <img src='{{ asset('media/002.jpeg')}}' class='d-block w-100' alt='...'>
                     <div class="carousel-caption d-none d-md-block">
-                        <h2>Third slide label</h2>
-                        <p>Some representative placeholder content for the third slide.</p>
+                        <h2 class="text-white">La Franchise</h2>
+                        <p class="text-center"><span class="text-warning">ORANGE</span> <span class="text-info">BLEUE </span></p>
                     </div>
                 </div>
             </div>
@@ -57,12 +57,12 @@
     </div>
 
     <!- LE CONTENU--->
-    <div class="container-fluid">
-       <div class="row  bloc1 row-1 ">
-            <div class="col align-items-lg-center">
+    <div class="container-fluid ">
+        <div class="row d-flex justify-content-center mt-1 ">
+            <div class="col-lg-6 col-md-6 col-sm-12 mb-5  mx-auto">
                 <h1>Les Critères d'implantation</h1>
                 <p>Si vous êtes à la recherche d’un emplacement, notre équipe spécialisée dans le développement franchise vous propose des projets,
-                vous aide dans la recherche d’emplacements et dans la négociation du bail commercial.</p>
+                    vous aide dans la recherche d’emplacements et dans la négociation du bail commercial.</p>
                 <ul>
                     <li>Emplacement avec terrasse en centre-ville ou en périphérie (type zone de loisirs, pôle de restauration)</li>
                     <li>Agglomération à partir de 30 000 habitants </li>
@@ -72,14 +72,20 @@
                     <li>La licence IV est indispensable</li>
                 </ul>
             </div>
-       </div>
+
+        <div class="col-lg-6 col-md-6 col-sm-12 mb-5 mx-auto ">
+            <img src='{{ asset('media/salle_1.jpeg')}}' class=' rounded mx-auto d-block img-descriptive mb-1'  alt='...'>
+        </div>
+
+
+
     </div>
 
     <div class="container-fluid" >
-        <div class="row  justify-content-center bloc2 ">
-            <div class="col align-items-lg-center">
-                <h2>BESOIN D’UN Emplacement ?</h2>
-                <p class="text-light">Pour pouvoir lancer votre salle de sport à Orange Bleue, les critères d’implantation à respecter sont les suivants:
+        <div class="row d-flex justify-content-center theme-bleue ">
+            <div class="col-lg-6 col-md-6 col-sm-12 mb-5 mx-auto ">
+                <h3>BESOIN D’UN EMPLACEMENT ?</h3>
+                <p class="text-light ">Pour pouvoir lancer votre salle de sport à Orange Bleue, les critères d’implantation à respecter sont les suivants:
                     <br/>Rejoindre notre réseau peut être la solution pour :
                 </p>
                 <ul class="text-light">
@@ -88,37 +94,45 @@
                     <li>Avoir une meilleure rentabilité</li>
                     <li>Valoriser votre fond de commerce</li>
                 </ul>
-                <img src='{{ asset('media/2.jpeg')}}' class=' img-descriptive mb-1'  alt='...'>
+            </div>
+
+
+            <div class="col-lg-6 col-md-6 col-sm-12 mb-1 mx-auto ">
+                <img src='{{ asset('media/2.jpeg')}}' class=' rounded mx-auto d-block img-descriptive mb-1'  alt='...'>
+
             </div>
         </div>
     </div>
 
     <div class="container-fluid" >
-        <div class="row d-flex justify-content-center bloc3 mt-5 ">
-            <div class="col-lg-10 col-md-10 col-sm-12 mb-5 align-items-lg-center ">
-                <h2>Parole de franchisés !</h2>
-                <p class="">Pour pouvoir lancer votre salle de sport à Orange Bleue, les critères d’implantation
+        <div class="row d-flex justify-content-center mt-5 ">
+            <div class="col-lg-6 col-md-6 col-sm-12 mb-5 mx-auto ">
+                <img src='{{ asset('media/profil_recherché.jpeg')}}' class=' rounded mx-auto d-block img-descriptive mb-1'  alt='...'>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 mb-5 mx-auto ">
+                <h3>PAROLE DE FRANCHISÉS !</h3>
+                <p>Pour pouvoir lancer votre salle de sport à Orange Bleue, les critères d’implantation
                     à respecter sont les suivants:<br/>Rejoindre notre réseau peut être la solution pour :
                 </p>
-                <hr>
-                <img src='{{ asset('media/profil_recherché.jpeg')}}' class=' img-descriptive mb-1'  alt='...'>
             </div>
+
         </div>
     </div>
 
-    <div class="container-fluid" >
-        <div class="row d-flex justify-content-center bloc3 mt-5 ">
-            <div class="col-lg-9 col-md-12 col-sm-12 mb-5 align-items-lg-center">
-                <h2>LES PROFILS RECHERCHÉS</h2>
-                <p class="">Vous avez une réelle envie d’entreprendre dans un univers dynamique ? Vous êtes dotés de solides
-                    aptitudes à la gestion et au management et vous aimez le relationnel avec la clientèle ?
+    <div class="container-fluid">
+        <div class="row d-flex justify-content-center mt-5">
+            <div class="col-lg-6 col-md-6 col-sm-12 mb-5 mx-auto ">
+                <h5>LES PROFILS RECHERCHÉS</h5>
+                <p>Vous avez une réelle envie d’entreprendre dans un univers dynamique ?
+                    Vous êtes dotés de solides aptitudes à la gestion et au management et vous aimez le relationnel avec la clientèle ?
                     <br/>N’hésitez plus ! En famille, seul, en couple ou en association, les franchisés
                     Orange Bleue viennent d’horizons différents.
                     <br/>Issus ou non des métiers de la restauration, si vous pensez être le candidat idéal : contactez-nous !
                 </p>
-                <button type="button" class="btn btn-danger"> Postuler</button>
+                <button type="button" class="btn btn-danger btn-center"> Postuler</button>
             </div>
         </div>
+    </div>
     </div>
 {% endblock %}
 

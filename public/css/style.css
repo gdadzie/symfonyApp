@@ -1,60 +1,61 @@
 #carouselExampleCaptions{
-    width: 90%;
+    width: 100%;
     margin: auto;
 }
 
 .carrousel-item img{
-    width: 50%;
-    height: 400px;
+    width: 100%;
+
 }
 
-img{
-    width: 900px;
-    height: 600px;
+img {
+    width : 200vw;
+    height : 100vh;
+    max-width : 100%;
+    max-height : 500px;
 }
 
 .img-descriptive{
-    width: 600px;
-    height: 200px;
+    width: 800px;
+    height: 500px;
+    box-shadow: 10px 20px orange, 1em 0 .4em dodgerblue;
+    margin:20px;
 
-    box-shadow: 10px 20px orange, 1em 0 .4em olive;
 }
 h1{
-    font-size: 50px;
+    font-size: 45px;
+    margin-top: 20px;
+    text-transform: uppercase;
 }
 
-h2{
+h3{
     font-size: 35px;
+    margin-top: 20px;
 }
 
-p,ul{
+p,ul {
     font-size: 18px;
+    color: #0c4a6e;
+    text-align: justify;
 }
-h1, h2{
+h1, h3{
     color:orange;
     font-weight: lighter;
     text-align: center;
-    margin-top: 20px;
-}
-
-p,ul{
-    color: #0c4a6e;
-    text-align: justify-all;
-    justify-items: auto;
-    margin-top: 20px;
 
 }
+
 
 ul{
-    list-style: none;
-    text-align: justify;
+    list-style:none;
+    text-align:center;
 }
 
 body {
  background-color:ghostwhite;
 }
 
-.bloc2{
+.theme-bleue{
     background-color: #0c4a6e;
     color: white;
 }
@@ -64,8 +65,22 @@ body {
 /*// No media query for `xs` since this is the default in Bootstrap*/
 
 /*// Small devices (landscape phones, 576px and up)*/
-@media (min-width: 576px) {
+@media (min-width: 460px) {
+    h1,h3{
+        font-size: 30px;
+        margin-top: 20px;
+    }
 
+    p,ul {
+        font-size: 16px;
+        color: #0c4a6e;
+        text-align: justify;
+        list-style: circle;
+    }
+
+    .btn-center{
+        text-align: center;
+    }
 }
 
 /*// Medium devices (tablets, 768px and up)*/

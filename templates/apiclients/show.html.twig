@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Apiclients{% endblock %}
+{% block stylesheets %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link href="{{ asset('css/style.css') }}" type="text/css" rel="stylesheet">
+    {{ encore_entry_link_tags('app') }}
+{% endblock %}
+
+{% block body %}
+    <h1>Apiclients</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ apiclient.id }}</td>
+            </tr>
+            <tr>
+                <th>Client_id</th>
+                <td>{{ apiclient.clientId }}</td>
+            </tr>
+            <tr>
+                <th>Client_secret</th>
+                <td>{{ apiclient.clientSecret }}</td>
+            </tr>
+            <tr>
+                <th>Client_name</th>
+                <td>{{ apiclient.clientName }}</td>
+            </tr>
+            <tr>
+                <th>Active</th>
+                <td>{{ apiclient.active ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Short_description</th>
+                <td>{{ apiclient.shortDescription }}</td>
+            </tr>
+            <tr>
+                <th>Full_description</th>
+                <td>{{ apiclient.fullDescription }}</td>
+            </tr>
+            <tr>
+                <th>Logo_url</th>
+                <td>{{ apiclient.logoUrl }}</td>
+            </tr>
+            <tr>
+                <th>Url</th>
+                <td>{{ apiclient.url }}</td>
+            </tr>
+            <tr>
+                <th>Dpo</th>
+                <td>{{ apiclient.dpo }}</td>
+            </tr>
+            <tr>
+                <th>Technical_contact</th>
+                <td>{{ apiclient.technicalContact }}</td>
+            </tr>
+            <tr>
+                <th>Commercial_contact</th>
+                <td>{{ apiclient.commercialContact }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_apiclients_index') }}">back to list</a>
+
+    <a href="{{ path('app_apiclients_edit', {'id': apiclient.id}) }}">edit</a>
+
+    {{ include('apiclients/_delete_form.html.twig') }}
+{% endblock %}

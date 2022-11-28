@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Apiclients{% endblock %}
+
+{% block body %}
+    <h1>Edit Apiclients</h1>
+
+    {{ include('apiclients/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_apiclients_index') }}">back to list</a>
+
+    {{ include('apiclients/_delete_form.html.twig') }}
+{% endblock %}

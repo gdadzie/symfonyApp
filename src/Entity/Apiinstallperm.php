@@ -2,11 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\ApiInstallPermRepository;
+use App\Repository\ApiinstallpermRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: ApiInstallPermRepository::class)]
-class ApiInstallPerm
+#[ORM\Entity(repositoryClass: ApiinstallpermRepository::class)]
+class Apiinstallperm
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -16,14 +16,14 @@ class ApiInstallPerm
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $branch_id = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?int $install_id = null;
+    #[ORM\Column]
+    private ?bool $install_id = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $client_id = null;
 
     #[ORM\Column]
-    private ?int $members_read = null;
+    private ?bool $members_read = null;
 
     #[ORM\Column]
     private ?bool $members_write = null;
@@ -34,23 +34,23 @@ class ApiInstallPerm
     #[ORM\Column]
     private ?bool $members_products_add = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?int $members_payement_schedules_read = null;
+    #[ORM\Column]
+    private ?bool $members_payment_schedules_read = null;
 
     #[ORM\Column]
-    private ?bool $members_satistiques_read = null;
+    private ?bool $members_subcription_read = null;
 
     #[ORM\Column]
-    private ?bool $members_subscription_read = null;
+    private ?bool $payment_schedules_write = null;
 
     #[ORM\Column]
-    private ?bool $payement_schedules_read = null;
+    private ?bool $payment_schedules_read = null;
 
     #[ORM\Column]
-    private ?bool $payement_schedules_write = null;
+    private ?bool $payment_day_read = null;
 
-    #[ORM\ManyToOne(inversedBy: 'apiInstallPerms')]
-    private ?ApiClientsGrants $apiclientsgrants_id = null;
+    #[ORM\ManyToOne(inversedBy: 'apiinstallperms')]
+    private ?Apiclientsgrants $apiclientgrants_id = null;
 
     public function getId(): ?int
     {
@@ -69,12 +69,12 @@ class ApiInstallPerm
         return $this;
     }
 
-    public function getInstallId(): ?int
+    public function isInstallId(): ?bool
     {
         return $this->install_id;
     }
 
-    public function setInstallId(?int $install_id): self
+    public function setInstallId(bool $install_id): self
     {
         $this->install_id = $install_id;
 
@@ -93,12 +93,12 @@ class ApiInstallPerm
         return $this;
     }
 
-    public function getMembersRead(): ?int
+    public function isMembersRead(): ?bool
     {
         return $this->members_read;
     }
 
-    public function setMembersRead(int $members_read): self
+    public function setMembersRead(bool $members_read): self
     {
         $this->members_read = $members_read;
 
@@ -141,74 +141,74 @@ class ApiInstallPerm
         return $this;
     }
 
-    public function getMembersPayementSchedulesRead(): ?int
+    public function isMembersPaymentSchedulesRead(): ?bool
     {
-        return $this->members_payement_schedules_read;
+        return $this->members_payment_schedules_read;
     }
 
-    public function setMembersPayementSchedulesRead(?int $members_payement_schedules_read): self
+    public function setMembersPaymentSchedulesRead(bool $members_payment_schedules_read): self
     {
-        $this->members_payement_schedules_read = $members_payement_schedules_read;
+        $this->members_payment_schedules_read = $members_payment_schedules_read;
 
         return $this;
     }
 
-    public function isMembersSatistiquesRead(): ?bool
+    public function isMembersSubcriptionRead(): ?bool
     {
-        return $this->members_satistiques_read;
+        return $this->members_subcription_read;
     }
 
-    public function setMembersSatistiquesRead(bool $members_satistiques_read): self
+    public function setMembersSubcriptionRead(bool $members_subcription_read): self
     {
-        $this->members_satistiques_read = $members_satistiques_read;
+        $this->members_subcription_read = $members_subcription_read;
 
         return $this;
     }
 
-    public function isMembersSubscriptionRead(): ?bool
+    public function isPaymentSchedulesWrite(): ?bool
     {
-        return $this->members_subscription_read;
+        return $this->payment_schedules_write;
     }
 
-    public function setMembersSubscriptionRead(bool $members_subscription_read): self
+    public function setPaymentSchedulesWrite(bool $payment_schedules_write): self
     {
-        $this->members_subscription_read = $members_subscription_read;
+        $this->payment_schedules_write = $payment_schedules_write;
 
         return $this;
     }
 
-    public function isPayementSchedulesRead(): ?bool
+    public function isPaymentSchedulesRead(): ?bool
     {
-        return $this->payement_schedules_read;
+        return $this->payment_schedules_read;
     }
 
-    public function setPayementSchedulesRead(bool $payement_schedules_read): self
+    public function setPaymentSchedulesRead(bool $payment_schedules_read): self
     {
-        $this->payement_schedules_read = $payement_schedules_read;
+        $this->payment_schedules_read = $payment_schedules_read;
 
         return $this;
     }
 
-    public function isPayementSchedulesWrite(): ?bool
+    public function isPaymentDayRead(): ?bool
     {
-        return $this->payement_schedules_write;
+        return $this->payment_day_read;
     }
 
-    public function setPayementSchedulesWrite(bool $payement_schedules_write): self
+    public function setPaymentDayRead(bool $payment_day_read): self
     {
-        $this->payement_schedules_write = $payement_schedules_write;
+        $this->payment_day_read = $payment_day_read;
 
         return $this;
     }
 
-    public function getApiclientsgrantsId(): ?ApiClientsGrants
+    public function getApiclientgrantsId(): ?Apiclientsgrants
     {
-        return $this->apiclientsgrants_id;
+        return $this->apiclientgrants_id;
     }
 
-    public function setApiclientsgrantsId(?ApiClientsGrants $apiclientsgrants_id): self
+    public function setApiclientgrantsId(?Apiclientsgrants $apiclientgrants_id): self
     {
-        $this->apiclientsgrants_id = $apiclientsgrants_id;
+        $this->apiclientgrants_id = $apiclientgrants_id;
 
         return $this;
     }

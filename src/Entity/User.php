@@ -3,19 +3,20 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
+
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    private ?int $id = null;
+    public ?int $id = null;
 
     #[ORM\Column(length: 180, unique: true)]
     private ?string $email = null;
@@ -27,10 +28,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @var string The hashed password
      */
     #[ORM\Column]
-    private ?string $password = null;
+    public ?string $password = null;
 
-    #[ORM\OneToOne(mappedBy: 'user_id', cascade: ['persist', 'remove'])]
-    private ?ApiClients $apiClients = null;
+    #[ORM\OneToMany(mappedBy: 'user_id', targetEntity: Apiclients::class)]
+    private Collection $apiclients;
+
+    public function __construct()
+    {
+        $this->apiclients = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -93,6 +99,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+
     /**
      * @see UserInterface
      */
@@ -102,25 +109,40 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // $this->plainPassword = null;
     }
 
-    public function getApiClients(): ?ApiClients
-    {
-        return $this->apiClients;
+
+
+    public function __toString() {
+        return $this->getUserIdentifier();
     }
 
-    public function setApiClients(?ApiClients $apiClients): self
+    /**
+     * @return Collection<int, Apiclients>
+     */
+    public function getApiclients(): Collection
     {
-        // unset the owning side of the relation if necessary
-        if ($apiClients === null && $this->apiClients !== null) {
-            $this->apiClients->setUserId(null);
-        }
+        return $this->apiclients;
+    }
 
-        // set the owning side of the relation if necessary
-        if ($apiClients !== null && $apiClients->getUserId() !== $this) {
-            $apiClients->setUserId($this);
+    public function addApiclient(Apiclients $apiclient): self
+    {
+        if (!$this->apiclients->contains($apiclient)) {
+            $this->apiclients->add($apiclient);
+            $apiclient->setUserId($this);
         }
-
-        $this->apiClients = $apiClients;
 
         return $this;
     }
+
+    public function removeApiclient(Apiclients $apiclient): self
+    {
+        if ($this->apiclients->removeElement($apiclient)) {
+            // set the owning side to null (unless already changed)
+            if ($apiclient->getUserId() === $this) {
+                $apiclient->setUserId(null);
+            }
+        }
+
+        return $this;
+    }
+
 }

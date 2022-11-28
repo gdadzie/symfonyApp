@@ -2,16 +2,18 @@
 
 namespace App\Entity;
 
-use App\Repository\ApiClientsRepository;
+use App\Repository\ApiclientsRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: ApiClientsRepository::class)]
-class ApiClients
+#[ORM\Entity(repositoryClass: ApiclientsRepository::class)]
+class Apiclients
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    private ?int $id = null;
+    public ?int $id = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $client_id = null;
@@ -19,11 +21,11 @@ class ApiClients
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $client_secret = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $client_name = null;
 
     #[ORM\Column]
-    private ?bool $_active = null;
+    private ?bool $active = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $short_description = null;
@@ -46,11 +48,22 @@ class ApiClients
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $commercial_contact = null;
 
-    #[ORM\OneToOne(mappedBy: 'apiclients_id', cascade: ['persist', 'remove'])]
-    private ?ApiClientsGrants $apiClientsGrants = null;
 
-    #[ORM\OneToOne(inversedBy: 'apiClients', cascade: ['persist', 'remove'])]
-    private ?User $user_id = null;
+
+    #[ORM\OneToOne(mappedBy: 'apiclients_id', cascade: ['persist', 'remove'])]
+    private ?Apiclientsgrants $apiclientsgrants = null;
+
+    #[ORM\ManyToOne(inversedBy: 'apiclients')]
+    public ?user $user_id = null;
+
+    #[ORM\OneToMany(mappedBy: 'apiclients_id', targetEntity: Structures::class)]
+    public Collection $structures;
+
+    public function __construct()
+    {
+        $this->structures = new ArrayCollection();
+    }
+
 
     public function getId(): ?int
     {
@@ -86,7 +99,7 @@ class ApiClients
         return $this->client_name;
     }
 
-    public function setClientName(string $client_name): self
+    public function setClientName(?string $client_name): self
     {
         $this->client_name = $client_name;
 
@@ -95,12 +108,12 @@ class ApiClients
 
     public function isActive(): ?bool
     {
-        return $this->_active;
+        return $this->active;
     }
 
-    public function setActive(bool $_active): self
+    public function setActive(bool $active): self
     {
-        $this->_active = $_active;
+        $this->active = $active;
 
         return $this;
     }
@@ -189,37 +202,73 @@ class ApiClients
         return $this;
     }
 
-    public function getApiClientsGrants(): ?ApiClientsGrants
+
+
+    public function getApiclientsgrants(): ?Apiclientsgrants
     {
-        return $this->apiClientsGrants;
+        return $this->apiclientsgrants;
     }
 
-    public function setApiClientsGrants(?ApiClientsGrants $apiClientsGrants): self
+    public function setApiclientsgrants(?Apiclientsgrants $apiclientsgrants): self
     {
         // unset the owning side of the relation if necessary
-        if ($apiClientsGrants === null && $this->apiClientsGrants !== null) {
-            $this->apiClientsGrants->setApiclientsId(null);
+        if ($apiclientsgrants === null && $this->apiclientsgrants !== null) {
+            $this->apiclientsgrants->setApiclientsId(null);
         }
 
         // set the owning side of the relation if necessary
-        if ($apiClientsGrants !== null && $apiClientsGrants->getApiclientsId() !== $this) {
-            $apiClientsGrants->setApiclientsId($this);
+        if ($apiclientsgrants !== null && $apiclientsgrants->getApiclientsId() !== $this) {
+            $apiclientsgrants->setApiclientsId($this);
         }
 
-        $this->apiClientsGrants = $apiClientsGrants;
+        $this->apiclientsgrants = $apiclientsgrants;
 
         return $this;
     }
 
-    public function getUserId(): ?User
+    public function getUserId(): ?user
     {
         return $this->user_id;
     }
 
-    public function setUserId(?User $user_id): self
+    public function setUserId(?user $user_id): self
     {
         $this->user_id = $user_id;
 
         return $this;
     }
+
+    /**
+     * @return Collection<int, Structures>
+     */
+    public function getStructures(): Collection
+    {
+        return $this->structures;
+    }
+
+    public function addStructure(Structures $structure): self
+    {
+        if (!$this->structures->contains($structure)) {
+            $this->structures->add($structure);
+            $structure->setApiclientsId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeStructure(Structures $structure): self
+    {
+        if ($this->structures->removeElement($structure)) {
+            // set the owning side to null (unless already changed)
+            if ($structure->getApiclientsId() === $this) {
+                $structure->setApiclientsId(null);
+            }
+        }
+
+        return $this;
+    }
+
+
+
+
 }
